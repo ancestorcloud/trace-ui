@@ -1,0 +1,11 @@
+exports[`test Text renders like a boss 1`] = `
+<span>
+  like a boss
+</span>
+`;
+
+exports[`test Text renders transform 1`] = `
+<span>
+  like a boss
+</span>
+`;
