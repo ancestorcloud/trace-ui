@@ -7,13 +7,13 @@ import {CelebrateIcon, AlertIcon} from '../icons'
 import {Action, P} from '../Text'
 
 const iconConfig = {
-  approve: () =>
+  approve: ({compact}) =>
     <Col pr='-' y='end'>
-      <CelebrateIcon size={70} />
+      <CelebrateIcon size={compact ? 35 : 70} />
     </Col>,
-  decline: () =>
+  decline: ({compact}) =>
     <Col pl='-' y='end'>
-      <AlertIcon size={50} />
+      <AlertIcon size={compact ? 30 : 50} />
     </Col>
 }
 
@@ -53,7 +53,11 @@ const ActionBox = ({
 
   return (
     <Col x {...{onClick}} p='-' width={size} height={size} {...style} {...border} role='button'>
-      {I && <Row mb='--' x><I /></Row>}
+      {I &&
+        <Row mb='--' x>
+          <I {...{compact}} />
+        </Row>
+      }
       <Action passive={passive} alert={alert}>{action}</Action>
       {!compact && <P compact>{explainer}</P>}
     </Col>
