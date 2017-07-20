@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf } from '@kadira/storybook'
 import {Row} from '../Layout'
-import {CelebrateIcon, AlertIcon, CloseIcon, Wordmark, LogoMark} from './index'
+import {CelebrateIcon, AlertIcon, CloseIcon, WordMark, LogoMark} from './index'
 
 storiesOf('icons', module)
   .add('CelebrateIcon', () => (
@@ -24,9 +24,9 @@ storiesOf('icons', module)
   ))
   .add('Wordmark', () => (
     <Row p='0'>
-      <Wordmark size={100} color='blue' />
-      <Wordmark size={300} color='#ccc'/>
-      <Wordmark />
+      <WordMark size={100} color='blue' />
+      <WordMark size={300} color='#ccc'/>
+      <WordMark />
     </Row>
   ))
   .add('LogoMark', () => (
