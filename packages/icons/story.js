@@ -3,7 +3,6 @@ import { storiesOf } from '@kadira/storybook'
 import {Row} from '../Layout'
 import {CelebrateIcon, AlertIcon, CloseIcon, WordMark, LogoMark} from './index'
 
-
 storiesOf('icons', module)
   .add('CelebrateIcon', () => (
     <Row p='0'>
