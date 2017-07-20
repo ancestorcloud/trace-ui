@@ -1,6 +1,7 @@
 import './style/generic.reset.css'
 import './style/generic.box-sizing.css'
 import './style/generic.normalize.css'
+import './style/fonts.css'
 import { configure } from '@kadira/storybook'
 
 function loadStories () {
