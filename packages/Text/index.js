@@ -10,15 +10,17 @@ const { keys } = Object
 
 css.fontFace(typography.primary)
 
-const baseStyle = css({
-  lineHeight: 1.4,
-  fontFamily: 'Museo Sans',
-  margin: 0
-})
+const baseStyle = css({ lineHeight: 1.4, fontFamily: 'Museo Sans', margin: 0 })
 
 const typeConfig = {
   title: { size: 14, fontWeight: 900, opacity: 0.9 },
-  action: { size: 14, fontWeight: 900, cursor: 'pointer', outline: 'none', userSelect: 'none' },
+  action: {
+    size: 14,
+    fontWeight: 900,
+    cursor: 'pointer',
+    outline: 'none',
+    userSelect: 'none'
+  },
   alert: { size: 14, color: colors.lightAlert },
   label: { size: 15, fontWeight: 900, display: 'block' },
   placeholder: { size: 14, color: opacity(colors.darkestTertiary, 0.4) },
@@ -32,20 +34,50 @@ const typeConfig = {
     ...
    }
  */
-const styleConfig = keys(typeConfig)
-  .reduce((styles, type) => ({
+const styleConfig = keys(typeConfig).reduce(
+  (styles, type) => ({
     ...styles,
     [type]: css({
       ...typeConfig[type],
       fontSize: pxToEm(typeConfig[type].size)
     })
-  }), {})
+  }),
+  {}
+)
 
 const whiteListedProps = {
-  id: id => ({id}),
-  baseRef: ref => ({ref}),
-  onClick: onClick => ({onClick})
+  id: id => ({ id }),
+  baseRef: ref => ({ ref }),
+  onClick: onClick => ({ onClick }),
+  children: children => ({ children })
 }
+
+const textSizeConfig = {
+  tiny: pxToEm(12),
+  small: pxToEm(14),
+  medium: pxToEm(16),
+  large: pxToEm(18),
+  giant: pxToEm(20)
+}
+
+const textSizing = keys(textSizeConfig).reduce(
+  (sizing, size) => ({
+    ...sizing,
+    [size]: css({ fontSize: textSizeConfig[size] })
+  }),
+  {}
+)
+
+export const Text = (
+  { color: clr, size = 'small', opacity: op = 1, ...rest }
+) => (
+  <span
+    {...transformProps(whiteListedProps, rest)}
+    {...baseStyle}
+    {...color[clr]}
+    {...textSizing[size]}
+  />
+)
 
 const baseHeading = css({
   fontWeight: 900,
@@ -61,73 +93,63 @@ const h = {
   5: pxToEm(20)
 }
 
-export const Heading = ({children, level = 1}) => {
+export const Heading = ({ children, level = 1 }) => {
   const Tag = `h${level}`
   return (
-    <Tag {...baseStyle} {...baseHeading} style={{fontSize: h[level]}}>
+    <Tag {...baseStyle} {...baseHeading} style={{ fontSize: h[level] }}>
       {children}
     </Tag>
   )
 }
 
-Heading.propTypes = {
-  level: pt.oneOf([...keys(h), ...keys(h).map(Number)])
-}
+Heading.propTypes = { level: pt.oneOf([ ...keys(h), ...keys(h).map(Number) ]) }
 
-export const Subheading = ({children}) =>
+export const Subheading = ({ children }) => (
   <span {...baseStyle} {...styleConfig.subheading}>
     {children}
   </span>
+)
 
-export const Alert = ({children}) =>
+export const Alert = ({ children }) => (
   <span {...baseStyle} {...styleConfig.alert}>
     {children}
   </span>
+)
 
 const actionStyles = {
   active: css({
     color: colors.primary,
-    ':hover': {
-      color: colors.lightPrimary
-    },
-    ':active': {
-      color: colors.darkPrimary
-    }
+    ':hover': { color: colors.lightPrimary },
+    ':active': { color: colors.darkPrimary }
   }),
   passive: css({
     color: colors.darkGrey,
-    ':hover': {
-      color: colors.lightGrey
-    },
-    ':active': {
-      color: colors.darkestGrey
-    }
+    ':hover': { color: colors.lightGrey },
+    ':active': { color: colors.darkestGrey }
   }),
   alert: css({
     color: colors.alert,
-    ':hover': {
-      color: colors.lightAlert
-    },
-    ':active': {
-      color: colors.darkAlert
-    }
+    ':hover': { color: colors.lightAlert },
+    ':active': { color: colors.darkAlert }
   })
 }
 
-export const Action = ({children, alert, passive, ...rest}) =>
-  <span role='button' tabIndex='0'
+export const Action = ({ children, alert, passive, ...rest }) => (
+  <span
+    role='button'
+    tabIndex='0'
     {...transformProps(whiteListedProps, rest)}
     {...baseStyle}
     {...styleConfig.action}
-    className={passive
-      ? actionStyles.passive
-      : alert
-      ? actionStyles.alert
-      : actionStyles.active
+    className={
+      passive
+        ? actionStyles.passive
+        : alert ? actionStyles.alert : actionStyles.active
     }
   >
     {children}
   </span>
+)
 
 Action.propTypes = {
   id: pt.string,
@@ -137,28 +159,26 @@ Action.propTypes = {
   onClick: pt.func
 }
 
-export const Title = ({children, color: clr = 'darkestTertiary', big, ...rest}) =>
+export const Title = (
+  { children, color: clr = 'darkestTertiary', big, ...rest }
+) => (
   <span
     {...baseStyle}
     {...color[clr]}
     {...styleConfig.title}
-    style={big ? {fontSize: pxToEm(18)} : {}}
+    style={big ? { fontSize: pxToEm(18) } : {}}
   >
     {children}
   </span>
+)
 
-Title.propTypes = {
-  color: pt.oneOf(keys(colors)),
-  big: pt.bool
-}
+Title.propTypes = { color: pt.oneOf(keys(colors)), big: pt.bool }
 
-export const Placeholder = ({children}) =>
-  <span
-    {...baseStyle}
-    {...styleConfig.placeholder}
-  >
+export const Placeholder = ({ children }) => (
+  <span {...baseStyle} {...styleConfig.placeholder}>
     {children}
   </span>
+)
 
 const highlightLabel = {
   padding: pxToEm(12),
@@ -167,7 +187,11 @@ const highlightLabel = {
 }
 
 const labelConfig = {
-  default: css({color: colors.darkestTertiary, opacity: 0.5, textTransform: 'uppercase'}),
+  default: css({
+    color: colors.darkestTertiary,
+    opacity: 0.5,
+    textTransform: 'uppercase'
+  }),
   urgent: css({
     ...highlightLabel,
     color: colors.alert,
@@ -180,84 +204,60 @@ const labelConfig = {
   })
 }
 
-export const Label = ({head, children, type = 'default', htmlFor, ...rest}) =>
+export const Label = (
+  { head, children, type = 'default', htmlFor, ...rest }
+) => (
   <label
     {...transformProps(whiteListedProps, rest)}
-    {...{htmlFor}}
+    {...{ htmlFor }}
     {...baseStyle}
     {...styleConfig.label}
     {...labelConfig[type]}
   >
     {type === 'default' && children}
-    {(type !== 'default' && head) &&
-      <span style={{textTransform: 'uppercase'}}>
-        {`${head}: `}
-      </span>
-    }
-    {(type !== 'default' && children) &&
-      <span style={{fontWeight: 500}}>
-        {children}
-      </span>
-    }
+    {type !== 'default' && head && (
+    <span style={{ textTransform: 'uppercase' }}>
+      {`${head}: `}
+    </span>
+        )}
+    {type !== 'default' && children && (
+    <span style={{ fontWeight: 500 }}>
+      {children}
+    </span>
+        )}
   </label>
+)
 
 Label.propTypes = {
   id: pt.string,
   baseRef: pt.func,
   onClick: pt.func,
-  type: pt.oneOf(['default', 'urgent', 'passive']),
+  type: pt.oneOf([ 'default', 'urgent', 'passive' ]),
   htmlFor: pt.string
 }
 
-const baseP = {
-  color: opacity(colors.darkestTertiary, 0.8)
-}
+const baseP = { color: opacity(colors.darkestTertiary, 0.8) }
 
 const pConfig = {
-  default: css({
-    ...baseP,
-    fontSize: pxToEm(15),
-    lineHeight: 1.4
-  }),
-  compact: css({
-    ...baseP,
-    fontSize: pxToEm(14)
-  })
+  default: css({ ...baseP, fontSize: pxToEm(15), lineHeight: 1.4 }),
+  compact: css({ ...baseP, fontSize: pxToEm(14) })
 }
 
-export const P = ({children, compact, linkify}) =>
-  <p
-    {...baseStyle}
-    {...pConfig[compact ? 'compact' : 'default']}
-  >
+export const P = ({ children, compact, linkify }) => (
+  <p {...baseStyle} {...pConfig[compact ? 'compact' : 'default']}>
     {children}
   </p>
+)
 
-P.propTypes = {
-  compact: pt.bool,
-  linkify: pt.bool
-}
+P.propTypes = { compact: pt.bool, linkify: pt.bool }
 
 const ts = css({
   fontSize: pxToEm(12),
   color: opacity(colors.darkestTertiary, 0.3)
 })
 
-export const Timestamp = ({children}) =>
-  <span
-    {...baseStyle}
-    {...ts}
-  >
+export const Timestamp = ({ children }) => (
+  <span {...baseStyle} {...ts}>
     {children}
   </span>
-
-export default ({children}) => <span>{children}</span>
-
-// export default {
-//   Action,
-//   Alert,
-//   Heading,
-//   Label,
-//   P,
-//   Title
-// }
+)
