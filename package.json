@@ -6,7 +6,6 @@
   "scripts": {
     "build": "babel --copy-files --out-dir dist packages",
     "prepublish": "npm run build",
-    "postpublish": "rm -rf dist",
     "prebuild": "rm -rf dist && mkdir dist",
     "test": "../../node_modules/.bin/jest --watch",
     "storybook": "start-storybook -p 9002 -c .storybook"
