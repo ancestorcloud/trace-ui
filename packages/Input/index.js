@@ -3,7 +3,7 @@ import { css } from 'glamor'
 
 import { pxToEm, opacity } from '../style/utils'
 import { fonts, colors } from '../style/settings'
-import { normalize } from '../style'
+import { normalize, cursor } from '../style'
 
 const requiredTag = (
   <div {...css({ position: 'absolute', top: 0, right: 1 })}>
@@ -45,6 +45,7 @@ export const Input = ({ required, error: e, ...rest }) => (
       {...base}
       {...font}
       {...border}
+      {...cursor.text}
       className={`${e ? err : ''}`}
     />
   </div>
