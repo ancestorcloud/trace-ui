@@ -1,15 +1,18 @@
 import { baseFontSize } from './settings'
 
-export const pxToEm = (px) =>
-  `${px / baseFontSize}em`
+export const pxToEm = px => `${px / baseFontSize}em`
 
-export const size = (size) => ({
-  width: size,
-  height: size
+export const size = size => ({ width: size, height: size })
+
+export const createPlaceholderStyles = props => ({
+  '::-webkit-input-placeholder': props,
+  '::-moz-placeholder': props,
+  ':-ms-input-placeholder': props,
+  ':-moz-placeholder': props
 })
 
 // taken from https://github.com/scottcorgan/hex-to-rgb
-export const hexToRgb = (hex) => {
+export const hexToRgb = hex => {
   if (hex.charAt && hex.charAt(0) === '#') {
     hex = removeHash(hex)
   }
@@ -19,11 +22,11 @@ export const hexToRgb = (hex) => {
   }
 
   const bigint = parseInt(hex, 16)
-  const r = (bigint >> 16) & 255
-  const g = (bigint >> 8) & 255
+  const r = bigint >> 16 & 255
+  const g = bigint >> 8 & 255
   const b = bigint & 255
 
-  return [r, g, b]
+  return [ r, g, b ]
 }
 
 function removeHash (hex) {
@@ -35,9 +38,7 @@ function removeHash (hex) {
 function expand (hex) {
   return hex
     .split('')
-    .reduce((accum, value) =>
-      accum.concat([value, value])
-    , [])
+    .reduce((accum, value) => accum.concat([ value, value ]), [])
     .join('')
 }
 

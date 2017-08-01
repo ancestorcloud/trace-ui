@@ -4,7 +4,7 @@ import Input from './index'
 
 storiesOf('Input', module).add('basic', () => (
   <div>
-    <Input />
+    <Input placeholder='hi' />
   </div>
 )).add('required', () => (
   <div>

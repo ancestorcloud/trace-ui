@@ -1,7 +1,7 @@
 import React, { PropTypes as pt } from 'react'
 import { css } from 'glamor'
 
-import { pxToEm, opacity } from '../style/utils'
+import { pxToEm, opacity, createPlaceholderStyles } from '../style/utils'
 import { fonts, colors } from '../style/settings'
 import { normalize, cursor } from '../style'
 
@@ -82,7 +82,8 @@ const base = css({
   width: '100%',
   height: '100%',
   borderRadius: pxToEm(5),
-  transition: '.25s'
+  transition: '.25s',
+  ...createPlaceholderStyles({ opacity: 0.5 })
 })
 
 const font = css({
