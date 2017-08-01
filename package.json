@@ -8,7 +8,7 @@
     "prepublish": "npm run build",
     "prebuild": "rm -rf dist && mkdir dist",
     "test": "../../node_modules/.bin/jest --watch",
-    "storybook": "start-storybook -p 9002 -c .storybook"
+    "storybook": "start-storybook -p 9002 -c .storybook -s ./public"
   },
   "files": [
     "dist"
