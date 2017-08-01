@@ -7,9 +7,7 @@ export const color = Object
 
 export const normalize = css({
   display: 'inline-block',
-  cursor: 'pointer',
   border: 'none',
-  outline: 'none',
   textDecoration: 'none'
 })
 
