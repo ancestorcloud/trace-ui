@@ -27,12 +27,37 @@ export const colors = {
   black: '#000000'
 }
 
-export const typography = {
-  primary: {
+export const typography = [
+  { // primary
+    fontFamily: 'Museo Sans',
+    src: `url('/assets/fonts/MuseoSans/MuseoSans-500.otf')`
+  },
+
+  {
+    fontFamily: 'Museo Sans',
+    fontWeight: 100,
+    src: `url('/assets/fonts/MuseoSans/MuseoSans-100.otf')`
+  },
+  {
+    fontFamily: 'Museo Sans',
+    fontWeight: 300,
+    src: `url('/assets/fonts/MuseoSans/MuseoSans-300.otf')`
+  },
+  {
     fontFamily: 'Museo Sans',
     fontWeight: 500,
+    src: `url('/assets/fonts/MuseoSans/MuseoSans-500.otf')`
+  },
+  {
+    fontFamily: 'Museo Sans',
+    fontWeight: 700,
+    src: `url('/assets/fonts/MuseoSans/MuseoSans-700.otf')`
+  },
+  {
+    fontFamily: 'Museo Sans',
+    fontWeight: 900,
     src: `url('/assets/fonts/MuseoSans/MuseoSans-900.otf')`
-  }
-}
+  },
+]
 
 export const fonts = { primary: 'Museo Sans' }

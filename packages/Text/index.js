@@ -8,7 +8,9 @@ import { typography, colors } from '../style/settings'
 
 const { keys } = Object
 
-css.fontFace(typography.primary)
+typography.forEach(font =>
+  css.fontFace(font)
+)
 
 const baseStyle = css({ lineHeight: 1.4, fontFamily: 'Museo Sans', margin: 0 })
 
