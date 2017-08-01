@@ -1,6 +1,6 @@
 {
   "name": "trace-ui",
-  "version": "2.6.0",
+  "version": "2.7.0",
   "description": "reusable components made w/ <3 by Trace",
   "main": "dist",
   "scripts": {
@@ -8,7 +8,7 @@
     "prepublish": "npm run build",
     "prebuild": "rm -rf dist && mkdir dist",
     "test": "../../node_modules/.bin/jest --watch",
-    "storybook": "start-storybook -p 9002 -c .storybook"
+    "storybook": "start-storybook -p 9002 -c .storybook -s ./public"
   },
   "files": [
     "dist"
