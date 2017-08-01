@@ -44,6 +44,9 @@ storiesOf('Text', module).add('text', () => (
     <Title color='lightPrimary'>Where the Red Fern Grows</Title>
     <Title color='lightestGray'>Where the Red Fern Grows</Title>
     <Title color='accent'>Where the Red Fern Grows</Title>
+    <div>
+      <Title size='giant'>Where the Red Fern Grows</Title>
+    </div>
   </div>
 )).add('heading', () => (
   <div>
