@@ -8,9 +8,7 @@ import { typography, colors } from '../style/settings'
 
 const { keys } = Object
 
-typography.forEach(font =>
-  css.fontFace(font)
-)
+typography.forEach(font => css.fontFace(font))
 
 const baseStyle = css({ lineHeight: 1.4, fontFamily: 'Museo Sans', margin: 0 })
 
@@ -190,7 +188,7 @@ export const Title = (
 
 Title.propTypes = {
   color: pt.oneOf(keys(colors)),
-  size: pt.oneOf('large', 'giant'),
+  size: pt.oneOf([ 'large', 'giant' ])
 }
 
 export const Placeholder = ({ children }) => (
