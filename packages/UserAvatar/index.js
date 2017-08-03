@@ -1,5 +1,4 @@
 import React, { PropTypes as pt } from 'react'
-
 import { pxToEm } from '../style/utils'
 import Avatar from './elements/Avatar'
 import ConfettiAvatar from './elements/ConfettiAvatar'
@@ -44,11 +43,11 @@ const DefaultAvatar = ({ size, seed }) => {
   const theme = determineTheme(seed)
   return size === 'small'
     ? <ConfettiAvatar size={sizing.small} theme={theme} />
-    : <OffsetAvatar size={sizing.large} theme={theme} />
+    : <OffsetAvatar size={sizing[size]} theme={theme} />
 }
 
-const sizing = { small: pxToEm(38), large: pxToEm(125) }
-const UserAvatar = ({ user, size = 'small' }) => {
+const sizing = { small: pxToEm(38), medium: pxToEm(86), large: pxToEm(125) }
+const UserAvatar = ({ user, size = 'medium' }) => {
   const { avatar, id } = user
 
   const src = size === 'small'
@@ -61,7 +60,7 @@ const UserAvatar = ({ user, size = 'small' }) => {
 }
 
 UserAvatar.propTypes = {
-  size: pt.oneOf([ 'small', 'big' ]),
+  size: pt.oneOf([ 'small', 'medium', 'large' ]),
   user: pt.shape({
     avatar: pt.shape({ thumb: pt.string, normal: pt.string }).isRequired,
     id: pt.string.isRequired
