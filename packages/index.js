@@ -1,30 +1,39 @@
-import Ab from './ActionBox'
-export const ActionBox = Ab
+import ActionBox_ from './ActionBox'
+export const ActionBox = ActionBox_
 
-import B from './Button'
-export const Button = B
+import Button_ from './Button'
+export const Button = Button_
 
 export * from './icons'
 
-import I, {Select as Sel} from './Input'
-export const Input = I
-export const Select = Sel
+import Input_, {Select as Select_} from './Input'
+export const Input = Input_
+export const Select = Select_
 
 export * from './Layout'
 
-import Mod from './Modal'
-export const Modal = Mod
+import Modal_ from './Modal'
+export const Modal = Modal_
 
-import * as set from './style/settings'
-export const settings = set
+import * as settings_ from './style/settings'
+export const settings = settings_
 
-import * as u from './style/utils'
-export const utils = u
+import * as utils_ from './style/utils'
+export const utils = utils_
 
 import * as style from './style'
 export const css = style
 
 export * from './Text'
 
-import Ua from './UserAvatar'
-export const UserAvatar = Ua
+import UserAvatar_ from './UserAvatar'
+export const UserAvatar = UserAvatar_
+
+import {
+  Tabs as Tabs_,
+  TabList as TabList_,
+  TabPanels as TabPanels_
+} from './Tabs'
+export const Tabs = Tabs_
+export const TabList = TabList_
+export const TabPanels = TabPanels_
