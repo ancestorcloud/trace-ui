@@ -1,6 +1,6 @@
 {
   "name": "trace-ui",
-  "version": "2.10.1",
+  "version": "2.11.0",
   "description": "reusable components made w/ <3 by Trace",
   "main": "dist",
   "scripts": {
