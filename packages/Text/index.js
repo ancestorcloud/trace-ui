@@ -8,9 +8,7 @@ import { typography, colors } from '../style/settings'
 
 const { keys } = Object
 
-typography.forEach(font =>
-  css.fontFace(font)
-)
+typography.forEach(font => css.fontFace(font))
 
 const baseStyle = css({ lineHeight: 1.4, fontFamily: 'Museo Sans', margin: 0 })
 
@@ -161,20 +159,37 @@ Action.propTypes = {
   onClick: pt.func
 }
 
+const titleTextSizeConfig = {
+  standard: pxToEm(16),
+  large: pxToEm(20),
+  giant: pxToEm(30)
+}
+
+const titleTextSizing = keys(titleTextSizeConfig).reduce(
+  (sizing, size) => ({
+    ...sizing,
+    [size]: css({ fontSize: titleTextSizeConfig[size] })
+  }),
+  {}
+)
+
 export const Title = (
-  { children, color: clr = 'darkestTertiary', big, ...rest }
+  { children, color: clr = 'darkestTertiary', size = 'standard', ...rest }
 ) => (
   <span
     {...baseStyle}
     {...color[clr]}
     {...styleConfig.title}
-    style={big ? { fontSize: pxToEm(18) } : {}}
+    {...titleTextSizing[size]}
   >
     {children}
   </span>
 )
 
-Title.propTypes = { color: pt.oneOf(keys(colors)), big: pt.bool }
+Title.propTypes = {
+  color: pt.oneOf(keys(colors)),
+  size: pt.oneOf([ 'large', 'giant' ])
+}
 
 export const Placeholder = ({ children }) => (
   <span {...baseStyle} {...styleConfig.placeholder}>
