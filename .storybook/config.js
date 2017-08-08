@@ -9,6 +9,7 @@ function loadStories () {
   require('../packages/icons/story.js')
   require('../packages/Modal/Confirmation/story.js')
   require('../packages/Modal/Content/story.js')
+  require('../packages/Tabs/story.js')
   require('../story.js')
 }
 
