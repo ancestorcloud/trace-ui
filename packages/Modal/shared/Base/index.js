@@ -4,7 +4,16 @@ import { css } from 'glamor'
 import { pxToEm, opacity } from '../../../style/utils'
 
 const BaseModal = (
-  { width, height, maxWidth, maxHeight = '100%', minWidth, minHeight, ...rest }
+  {
+    width,
+    height,
+    maxWidth,
+    maxHeight = '100%',
+    minWidth,
+    minHeight,
+    overlayBackgroundColor = 'rgba(255, 255, 255, .75)',
+    ...rest
+  }
 ) => (
   <ReactModal
     {...{
@@ -33,7 +42,7 @@ const BaseModal = (
         left: 0,
         right: 0,
         bottom: 0,
-        backgroundColor: 'rgba(255, 255, 255, .75)'
+        backgroundColor: overlayBackgroundColor
       }).toString(),
       ...rest
     }}
