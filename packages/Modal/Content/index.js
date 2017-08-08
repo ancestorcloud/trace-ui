@@ -31,7 +31,6 @@ const ContentModal = (
     overlayBackgroundColor
   }
 ) => {
-  console.log(overlayBackgroundColor)
   const width = pxToEm(card ? 364 : 572)
   const Alt = (
     <Action passive onClick={onAltClick || onRequestClose}>{altCopy}</Action>
